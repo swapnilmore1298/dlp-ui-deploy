@@ -1,0 +1,206 @@
+<div>
+    <section>
+        <p-toolbar>
+            <div class="p-toolbar-group-left">
+                <p-button label="Add New Policy" icon="pi pi-plus" class="p-mr-3" (click)="openPolicyAddPop();">
+                </p-button>
+                &nbsp;&nbsp;&nbsp;
+                <p-button label="Update Existing Policy" icon="pi pi-upload" styleClass="p-button-success"
+                    (click)="openPolicyUpdatePop();"></p-button>
+                &nbsp;&nbsp;&nbsp;
+                <p-button label="Add new Target Group" icon="pi pi-plus" styleClass="p-button-info"
+                    (click)="openNewTarget();"></p-button>
+
+                <i class="p-toolbar-separator pi pi-bars p-mr-2" style="vertical-align: middle"></i>
+
+            </div>
+
+            <!-- <div class="p-toolbar-group-right">
+                <p-button icon="pi pi-search" class="p-mr-2"></p-button>
+                <p-button icon="pi pi-calendar" styleClass="p-button-success p-mr-2"></p-button>
+                <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
+            </div> -->
+        </p-toolbar>
+    </section>
+    <section #currentIncidents>
+        <p-fieldset legend="Current Active Policies">
+            <p-table [value]="listOfPolicies" [(selection)]="selectedPolicy" dataKey="_id" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th rowspan="3"></th>
+                        <th rowspan="3">Policy Id</th>
+                    </tr>
+                    <tr>
+
+                        <th colspan="2">Scanner Criteria</th>
+                        <th colspan="2">Action</th>
+                        <th rowspan="3">Target Group Id</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Parameters</th>
+                        <th>Name</th>
+                        <th>Parameters</th>
+                    </tr>
+
+                </ng-template>
+                <ng-template pTemplate="body" let-policy>
+                    <tr>
+                        <td>
+                            <p-tableRadioButton [value]="policy"></p-tableRadioButton>
+                        </td>
+                        <td>{{policy._id}}</td>
+                        <td>{{policy.scannerCriteria.name}}</td>
+                        <td>{{policy.scannerCriteria.parameters}}</td>
+                        <td>{{policy.action.name}}</td>
+                        <td>{{policy.action.parameters}}</td>
+                        <td>{{policy.groupName}}</td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+        </p-fieldset>
+
+    </section>
+</div>
+
+<p-dialog header="Add a new Policy" [(visible)]="addPolicyVisible" [style]="{width: '50vw',height:'100vh'}">
+    <div>
+        <h3>
+            Policy Creation
+        </h3>
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-12">
+                <br>
+                <span class="p-float-label">
+                    <!-- <input id="float-input" type="text" [(ngModel)]="nameOfNewPolicy" autocomplete="off" pInputText> -->
+                    <p-dropdown placeholder="Scanner Criteria Name" [options]="scannerOptions"
+                        [(ngModel)]="nameOfNewPolicy" optionLabel="name" optionValue="value"></p-dropdown>
+                </span>
+
+                <span style="margin-top: 1%;" class="p-float-label">
+                    <p-chips id="float-input" placeholder="Add parameter list comma seperated"
+                        [(ngModel)]="listOfNewParameters" separator=","></p-chips>
+                </span>
+                <br>
+
+            </div>
+        </div>
+
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-12">
+                <span class="p-float-label">
+                    <p-dropdown placeholder="Action Name" [options]="actionOptions" [(ngModel)]="nameOfNewPolicyAction"
+                        optionLabel="name" optionValue="value"></p-dropdown>
+                </span>
+
+                <span style="margin-top: 1%;" class="p-float-label">
+                    <p-chips id="float-input" placeholder="Add parameter list comma seperated"
+                        [(ngModel)]="listOfNewParametersAction" separator=","></p-chips>
+                </span>
+                <br>
+
+            </div>
+
+        </div>
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-12">
+                <span class="p-float-label">
+                    <input id="float-input" placeholder="Add Directory Path" type="text"
+                        [(ngModel)]="directoryNewPolicy" autocomplete="off" pInputText>
+                </span>
+                <br>
+                <span class="p-float-label">
+                    <p-dropdown placeholder="Select Group" [options]="targetGroupOptions"
+                        [(ngModel)]="targetGroupIdNewPolicy" optionLabel="name" optionValue="value"></p-dropdown>
+                </span>
+                <br>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-times" (click)="resetAddPolicy()" label="Reset" styleClass="p-button-text"></p-button>
+        &nbsp;&nbsp;
+        <p-button icon="pi pi-check" (click)="addNewPolicy()" label="Add new Policy" styleClass="p-button-text">
+        </p-button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog header="Update Existing Policy" (onHide)="onCloseUpdate()" [(visible)]="updatePolicyVisible"
+    [style]="{width: '50vw',height:'100vh'}">
+    <div *ngIf="selectedPolicy">
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-12">
+                <br>
+                <span class="p-float-label">
+                    <!-- <input id="float-input" type="text" [(ngModel)]="nameOfNewPolicy" autocomplete="off" pInputText> -->
+                    <p-dropdown placeholder="Scanner Criteria Name" [options]="scannerOptions"
+                        [(ngModel)]="selectedPolicy.scannerCriteria.name" optionLabel="name" optionValue="value">
+                    </p-dropdown>
+                </span>
+
+                <span style="margin-top: 1%;" class="p-float-label">
+                    <p-chips id="float-input" placeholder="Add parameter list comma seperated"
+                        [(ngModel)]="selectedPolicy.scannerCriteria.parameters" separator=","></p-chips>
+                </span>
+                <br>
+
+            </div>
+        </div>
+
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-12">
+                <span class="p-float-label">
+                    <p-dropdown placeholder="Action Name" [options]="actionOptions"
+                        [(ngModel)]="selectedPolicy.action.name" optionLabel="name" optionValue="value"></p-dropdown>
+                </span>
+
+                <span style="margin-top: 1%;" class="p-float-label">
+                    <p-chips id="float-input" placeholder="Add parameter list comma seperated"
+                        [(ngModel)]="selectedPolicy.action.parameters" separator=","></p-chips>
+                </span>
+                <br>
+
+            </div>
+
+        </div>
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-12">
+                <span class="p-float-label">
+                    <input id="float-input" placeholder="Add Directory Path" type="text"
+                        [(ngModel)]="selectedPolicy.directory" autocomplete="off" pInputText>
+                </span>
+                <br>
+                <span class="p-float-label">
+                    <p-dropdown placeholder="Select Group" [options]="targetGroupOptions"
+                        [(ngModel)]="selectedPolicy.targetGroupId" optionLabel="name" optionValue="value"></p-dropdown>
+                </span>
+                <br>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="updatePolicy()" label="Update" styleClass="p-button-text">
+        </p-button>
+    </ng-template>
+</p-dialog>
+
+
+<p-dialog header="Add New Target" (onHide)="onCloseUpdate()" [(visible)]="addTargetVisible"
+    [style]="{width: '50vw'}">
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-12">
+                <br>
+                <span class="p-float-label">
+                    <input id="float-input" placeholder="Write new target group name" type="text" [(ngModel)]="newTargetAdd" autocomplete="off" pInputText>
+                </span>
+            </div>
+        </div>
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="addNewTarget()" label="Add new Target" styleClass="p-button-text">
+        </p-button>
+    </ng-template>
+</p-dialog>
+
+<p-toast position="top-right"></p-toast>

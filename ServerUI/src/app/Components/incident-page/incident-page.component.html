@@ -1,0 +1,25 @@
+<div>
+    <section #currentIncidents>
+        <p-fieldset legend="Current Incidents">
+            <p-table [value]="listOfIncidents" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Incident id</th>
+                        <th>HostName</th>
+                        <th>Scanner Criteria</th>
+                        <th>Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-incident>
+                    <tr>
+                        <td>{{incident._id}}</td>
+                        <td>{{incident.client.hostName}}</td>
+                        <td>{{incident.policy.scannerCriteria.name}}</td>
+                        <td>{{incident.policy.action.name}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-fieldset>
+        
+    </section>
+</div>

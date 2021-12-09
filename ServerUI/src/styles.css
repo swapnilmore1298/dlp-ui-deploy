@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+    --primaryColor : #3B82F6;
+
+    --bgColorLight: #ffffff;
+    --bgColorDark: #F8F9FA;
+
+    --fontColorDark: #495057;
+    --fontColorLight: #6C757D;
+  }
+
+
+.route-body{
+    background-color: var(--bgColorLight);
+    height: 86.8vh;
+    overflow: hidden;
+    padding: 3%;
+    -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
+}
+
+html {
+  font-size: 12px;
+}

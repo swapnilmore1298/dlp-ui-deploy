@@ -1,0 +1,17 @@
+.titleBar{
+    background-color: var(--bgColorLight);
+    padding-top: 0.5%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.companyLogo{
+    height: 5%;
+    width: 5%;
+}
+
+.companyTitle{
+    margin-left: 2%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: var(--primaryColor);
+}
