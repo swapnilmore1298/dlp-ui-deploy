@@ -26,6 +26,7 @@ import {DialogModule} from 'primeng/dialog';
 import {ChipsModule} from 'primeng/chips';
 import {DropdownModule} from 'primeng/dropdown';
 import {ToastModule} from 'primeng/toast';
+import {CardModule} from 'primeng/card';
 import { AdminPageComponent } from './Components/admin-page/admin-page.component';
 
 @NgModule({
@@ -55,7 +56,8 @@ import { AdminPageComponent } from './Components/admin-page/admin-page.component
     ChipsModule,
     DialogModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    CardModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

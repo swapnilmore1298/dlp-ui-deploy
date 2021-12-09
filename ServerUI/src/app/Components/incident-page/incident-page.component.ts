@@ -18,7 +18,30 @@ export class IncidentPageComponent implements OnInit {
 
   getAllIncidents(){
     this.incidentService.getAllIncidents().subscribe(res=>{
-      this.listOfIncidents = res;
+      this.listOfIncidents = [];
+      var listOfIncidentsResponse : any[] = JSON.parse(JSON.stringify(res));
+      listOfIncidentsResponse.forEach(element => {
+        var _id = element._id ? element._id : "na";
+        var ClientHostName = element.client && element.client.hostName  ? element.client.hostName : "na";
+        var PolicyScannerName = element.policy && element.policy.scannerCriteria && element.policy.scannerCriteria.name  ? element.policy.scannerCriteria.name : "na";
+        var PolicyActionName = element.policy && element.policy.action && element.policy.action.name  ? element.policy.action.name : "na";
+
+        this.listOfIncidents.push({
+          _id : "",
+          client : {
+            hostName : ClientHostName
+          },
+          policy : {
+            scannerCriteria : {
+              name : PolicyScannerName
+            },
+            action : {
+              name : PolicyActionName
+            }
+          }
+        });
+
+      });
     })
   }
 }

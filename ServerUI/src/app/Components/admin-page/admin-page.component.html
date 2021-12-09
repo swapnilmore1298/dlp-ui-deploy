@@ -1,1 +1,32 @@
-<p>admin-page works!</p>
+<div class="row">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-4">
+        <img alt="Card" src="../../../assets/images/bouncer.jpg">
+    </div>
+    <div class="col-sm-6">
+        <p-card header="Intolerance" subheader="We do not tolerant at all!" [style]="{width: '360px'}"
+            styleClass="p-card-shadow">
+            <div *ngIf="success">
+                Login successful
+            </div>
+            <div *ngIf="!success">
+                Please Login
+            </div>
+            <br>
+            <span class="p-float-label">
+                <input id="float-input" type="text" pInputText [(ngModel)]="loginId">
+                <label for="float-input">Username</label>
+            </span>
+            <br><br>
+            <span class="p-float-label">
+                <input id="float-input" type="password" pInputText [(ngModel)]="password">
+                <label for="float-input">Password</label>
+            </span>
+            <br><br>
+            <button pButton pRipple type="button" label="Login" (click)="onLogin()" class="p-button-raised"></button>
+        </p-card>
+
+        
+    </div>

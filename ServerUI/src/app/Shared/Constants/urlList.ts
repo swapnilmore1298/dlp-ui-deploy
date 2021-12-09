@@ -5,6 +5,7 @@ export enum ApiPaths{
      */
 
     getAllClients = 'clients/',
+    addNewClient = 'clients/',
 
 
     /**
@@ -25,5 +26,11 @@ export enum ApiPaths{
      */
 
     getAllTargetGroups = 'targetGroup/',
-    addNewTarget = 'targetGroup/'
+    addNewTarget = 'targetGroup/',
+
+    /**
+     * Admin
+     */
+
+    getAllAdmins = 'login/'
 }

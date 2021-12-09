@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseURL : 'http://www.Intolerance.com/'
+  baseURL : 'https://intolerance3.herokuapp.com'
 };

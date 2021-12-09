@@ -6,6 +6,16 @@
         </h3>
     </div>
     <div class="afterHeader">
-        <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+        <div class="row" style="margin: 0%;">
+            <div class="col-sm-10">
+                <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+            </div>
+            <div class="col-sm-2">
+                <p-button icon="pi" (click)="logOut()" label="Log Out" styleClass="p-button-danger">
+                </p-button>
+            </div>
+        </div>
     </div>
 </div>
+
+<p-toast position="top-right"></p-toast>
