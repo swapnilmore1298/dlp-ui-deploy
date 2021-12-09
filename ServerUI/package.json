@@ -2,7 +2,7 @@
   "name": "server-ui",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "ng build --prod",
+    "postinstall": "ng build --prod", 
     "ng": "ng",
     "start":"node server.js",
     "build": "ng build",
@@ -16,7 +16,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.0.0",
-    "@angular/cli": "file:latest@angular/compiler-cli",
+    "@angular/cli": "~13.0.0",
     "@angular/compiler-cli": "~13.0.0",
     "@angular/cdk": "^13.0.3",
     "@angular/common": "~13.0.0",
